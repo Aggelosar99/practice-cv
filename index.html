@@ -73,37 +73,65 @@
     <p class="text-gray-600 relative z-10">Tηλέφωνο και email θα προστεθούν σύντομα.</p>
   </section>
 
-  <!-- Slide-in & Slide-out Animation Script (μένει ίδιο) -->
+  <!-- Slide-in & Slide-out Animation Script (ΜΟΝΟ ΤΟ ΣΩΣΤΟ, ΜΙΑ ΦΟΡΑ) -->
   <script>
-    // Επισημαίνουμε ποιο section έχει ποια κατεύθυνση για animation
-    const sections = document.querySelectorAll('section');
-    const config = { threshold: 0.25 };
-
+    // Glass, δύο sections εμφανή με slide, πάντα!
+    const sections = Array.from(document.querySelectorAll('section'));
+    // Slide εναλλάξ
     sections.forEach((section, i) => {
       section.dataset.slideDirection = (i % 2 === 0) ? 'left' : 'right';
     });
 
-    const callback = (entries) => {
-      entries.forEach(entry => {
-        const section = entry.target;
+    function updateSections() {
+      // Υπολογίζουμε το “κέντρο” του viewport και βρίσκουμε τα δύο πιο κοντινά sections
+      const viewportHeight = window.innerHeight;
+      const center = window.scrollY + viewportHeight / 2;
+
+      // Βρίσκουμε τα δύο sections που έχουν το κέντρο τους πιο κοντά στο κέντρο της οθόνης
+      const sorted = sections
+        .map((sec, i) => {
+          const rect = sec.getBoundingClientRect();
+          const secCenter = window.scrollY + rect.top + rect.height / 2;
+          return { sec, dist: Math.abs(secCenter - center), i };
+        })
+        .sort((a, b) => a.dist - b.dist);
+
+      // Ενεργά sections: τα δύο πιο κοντινά στο κέντρο
+      const active = sorted.slice(0, 2).map(e => e.i);
+
+      // Ενημέρωση όλων των sections με βάση το active index και slide κατεύθυνση
+      sections.forEach((section, i) => {
         const dir = section.dataset.slideDirection;
 
-        if (entry.isIntersecting) {
+        if (active.includes(i)) {
           section.classList.add('show');
-          section.classList.remove('slide-out-left', 'slide-out-right');
+          section.classList.remove('slide-out-left', 'slide-out-right', 'slide-in-left', 'slide-in-right');
+          section.classList.add(dir === 'left' ? 'slide-in-left' : 'slide-in-right');
+          setTimeout(() => {
+            section.classList.remove('slide-in-left', 'slide-in-right');
+          }, 900); // Δώσε λίγο χρόνο στο animation να τελειώσει
         } else {
           section.classList.remove('show');
-          if (dir === 'left') {
-            section.classList.add('slide-out-left');
+          // Ανάλογα με το που βρίσκεται το section (πάνω ή κάτω από το visible range)
+          if (i < active[0]) {
+            // Φεύγει προς τα αριστερά ή δεξιά
+            section.classList.remove('slide-in-left', 'slide-in-right');
+            section.classList.add(dir === 'left' ? 'slide-out-left' : 'slide-out-right');
+          } else if (i > active[active.length - 1]) {
+            section.classList.remove('slide-in-left', 'slide-in-right');
+            section.classList.add(dir === 'left' ? 'slide-out-left' : 'slide-out-right');
           } else {
-            section.classList.add('slide-out-right');
+            section.classList.remove('slide-out-left', 'slide-out-right', 'slide-in-left', 'slide-in-right');
           }
         }
       });
-    };
+    }
 
-    const observer = new IntersectionObserver(callback, config);
-    sections.forEach(section => observer.observe(section));
+    // Run on scroll & on load
+    window.addEventListener('scroll', updateSections);
+    window.addEventListener('resize', updateSections);
+    window.addEventListener('DOMContentLoaded', updateSections);
   </script>
+
 </body>
 </html>
