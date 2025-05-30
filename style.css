@@ -1,9 +1,9 @@
-/* Glassmorphism – πιο έντονο, πλατύ και soft */
+/* Glass effect για το CV section */
 .glass-bg {
-  background: rgba(255, 255, 255, 0.38);
-  box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.16);
-  backdrop-filter: blur(16px) saturate(200%);
-  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border-radius: 32px;
   border: 1.5px solid rgba(255, 255, 255, 0.34);
   position: relative;
@@ -16,55 +16,13 @@
   top: -40px;
   width: 60%;
   height: 90px;
-  background: linear-gradient(120deg, rgba(255,255,255,0.22), rgba(255,255,255,0.04));
+  background: linear-gradient(120deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
   border-radius: 100%;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Μεγαλύτερα fonts και spacing */
-section {
-  font-size: 1.35rem;
-}
-@media (min-width: 640px) {
-  section { font-size: 1.5rem; }
-}
-h1, h2 {
-  font-size: 2.4rem;
-}
-h3 {
-  font-size: 1.65rem;
-}
-ul, p, span, li {
-  font-size: 1.2em;
-}
-
-/* Bullet χρώμα – Tailwind v3+ */
+/* Tailwind marker color */
 .marker\:text-fuchsia-500 ::marker {
   color: #d946ef;
-}
-
-/* Slide-in/out animations */
-.show {
-  opacity: 1 !important;
-  transform: translateX(0) !important;
-  transition: all 0.8s cubic-bezier(.33,1,.68,1);
-}
-.slide-in-left {
-  opacity: 0;
-  transform: translateX(-60px);
-}
-.slide-in-right {
-  opacity: 0;
-  transform: translateX(60px);
-}
-.slide-out-left {
-  opacity: 0;
-  transform: translateX(-120px);
-  transition: all 0.8s cubic-bezier(.33,1,.68,1);
-}
-.slide-out-right {
-  opacity: 0;
-  transform: translateX(120px);
-  transition: all 0.8s cubic-bezier(.33,1,.68,1);
 }
