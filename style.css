@@ -13,3 +13,15 @@
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
+
+/* Slide-out animations */
+.slide-out-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.8s cubic-bezier(.33,1,.68,1);
+}
+.slide-out-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.8s cubic-bezier(.33,1,.68,1);
+}
