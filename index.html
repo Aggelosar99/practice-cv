@@ -73,19 +73,37 @@
     <p class="text-gray-600">Tηλέφωνο και email θα προστεθούν σύντομα.</p>
   </section>
 
-  <!-- Slide-in Animation Script -->
+  <!-- Slide-in & Slide-out Animation Script (NEW) -->
   <script>
-    // Βρίσκει όλα τα section και κάνει animate με το Intersection Observer
+    // Επισημαίνουμε ποιο section έχει ποια κατεύθυνση για animation
     const sections = document.querySelectorAll('section');
-    const config = { threshold: 0.15 };
-    const callback = (entries, observer) => {
+    const config = { threshold: 0.25 };
+
+    sections.forEach((section, i) => {
+      section.dataset.slideDirection = (i % 2 === 0) ? 'left' : 'right';
+    });
+
+    const callback = (entries) => {
       entries.forEach(entry => {
+        const section = entry.target;
+        const dir = section.dataset.slideDirection;
+
         if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
+          // Slide-in: φαίνεται στο viewport
+          section.classList.add('show');
+          section.classList.remove('slide-out-left', 'slide-out-right');
+        } else {
+          // Slide-out: φεύγει από το viewport (scrollup ή scrolldown)
+          section.classList.remove('show');
+          if (dir === 'left') {
+            section.classList.add('slide-out-left');
+          } else {
+            section.classList.add('slide-out-right');
+          }
         }
       });
     };
+
     const observer = new IntersectionObserver(callback, config);
     sections.forEach(section => observer.observe(section));
   </script>
