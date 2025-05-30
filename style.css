@@ -1,15 +1,17 @@
 body {
-  background: linear-gradient(120deg, #f0faff 0%, #c4e0e5 100%);
-}
-.glass-bg {
-  background: rgba(220,245,255,0.27);
-  box-shadow: 0 8px 32px 0 rgba(60,180,255,0.10);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  border-radius: 32px;
-  border: 1.5px solid rgba(200, 220, 255, 0.28);
+  background: linear-gradient(120deg, #ffe3ec 0%, #e0c3fc 100%);
 }
 
+.glass-bg {
+  background: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-radius: 32px;
+  border: 1.5px solid rgba(255, 255, 255, 0.24);
+  position: relative;
+  overflow: hidden;
+}
 
 .glass-bg::before {
   content: "";
