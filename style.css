@@ -14,7 +14,7 @@
   transform: translateX(0) !important;
 }
 
-/* Slide-out animations */
+/* Slide-out animations (NEW) */
 .slide-out-left {
   opacity: 0;
   transform: translateX(-60px);
