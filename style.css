@@ -1,10 +1,10 @@
-/* Glass effect για sections */
+/* Glassmorphism – πιο έντονο, πλατύ και soft */
 .glass-bg {
-  background: rgba(255, 255, 255, 0.24);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.38);
+  box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.16);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border-radius: 32px;
   border: 1.5px solid rgba(255, 255, 255, 0.34);
   position: relative;
   overflow: hidden;
@@ -22,9 +22,9 @@
   z-index: 0;
 }
 
-/* Μεγαλύτερα fonts */
+/* Μεγαλύτερα fonts και spacing */
 section {
-  font-size: 1.35rem;  /* base μέγεθος */
+  font-size: 1.35rem;
 }
 @media (min-width: 640px) {
   section { font-size: 1.5rem; }
@@ -39,12 +39,17 @@ ul, p, span, li {
   font-size: 1.2em;
 }
 
+/* Bullet χρώμα – Tailwind v3+ */
+.marker\:text-fuchsia-500 ::marker {
+  color: #d946ef;
+}
+
+/* Slide-in/out animations */
 .show {
   opacity: 1 !important;
   transform: translateX(0) !important;
   transition: all 0.8s cubic-bezier(.33,1,.68,1);
 }
-
 .slide-in-left {
   opacity: 0;
   transform: translateX(-60px);
