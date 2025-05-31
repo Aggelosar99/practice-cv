@@ -1,32 +1,105 @@
+/* Google Fonts (βάλε το link στο <head> του html σου!) */
+/* <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet"> */
+
 body {
-  background: linear-gradient(120deg, #ffe3ec 0%, #e0c3fc 100%);
+  background: #fcfbfa;
 }
 
-.glass-bg {
-  background: rgba(255, 255, 255, 0.32);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border-radius: 32px;
-  border: 1.5px solid rgba(255, 255, 255, 0.24);
-  position: relative;
-  overflow: hidden;
+/* ----------- Typography ----------- */
+h1, h2, h3, h4 {
+  color: #4B3D29;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.8em;
+}
+h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
-.glass-bg::before {
-  content: "";
-  position: absolute;
-  left: 30%;
-  top: -40px;
-  width: 60%;
-  height: 90px;
-  background: linear-gradient(120deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
-  border-radius: 100%;
-  pointer-events: none;
-  z-index: 0;
+/* ----------- Buttons ----------- */
+.btn-primary {
+  background: #D8C2A7;
+  color: #4B3D29;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  transition: background 0.2s;
+  font-family: inherit;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 6px 0 rgba(120,100,80,0.06);
+  margin-top: 0.4em;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: #B9A074;
 }
 
-/* Tailwind marker color */
-.marker\:text-fuchsia-500 ::marker {
-  color: #d946ef;
+/* ----------- Gallery Images ----------- */
+.img-card {
+  border-radius: 18px;
+  box-shadow: 0 3px 18px 0 rgba(80,60,40,0.10);
+  background: white;
+  object-fit: cover;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.img-card:hover {
+  transform: scale(1.027);
+  box-shadow: 0 6px 24px 0 rgba(80,60,40,0.14);
+}
+
+/* ----------- Remove Glass Effect ----------- */
+.glass-bg, .glass-bg::before {
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+}
+
+/* ----------- Misc ----------- */
+nav {
+  background: #fff;
+}
+a, .link {
+  color: #4B3D29;
+  transition: color 0.16s;
+}
+a:hover, .link:hover {
+  color: #B9A074;
+}
+section {
+  background: transparent;
+}
+
+/* Optional: Soft border for communication card */
+.comm-card {
+  border: 2px solid #D8C2A7;
+  border-radius: 14px;
+  background: #fff;
+  color: #4B3D29;
+  padding: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+/* Για responsive στα images grid αν χρειαστεί */
+@media (max-width: 600px) {
+  .img-card {
+    max-width: 100%;
+    height: auto !important;
+  }
 }
